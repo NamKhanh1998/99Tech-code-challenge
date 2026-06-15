@@ -1,7 +1,6 @@
-import { devices, theme } from "@/config";
+import { devices } from "@/config";
 import { useFetchTopCoins } from "@/hooks/useFetchTopCoins";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Box from "../ui/Box";
@@ -53,14 +52,6 @@ const RightSideMobile = styled(Flex)`
   }
 `;
 
-const DesktopBox = styled(Box)`
-  display: none;
-  @media ${devices.laptop} {
-    display: flex;
-    align-items: center;
-  }
-`;
-
 const MobileBox = styled(Box)`
   display: flex;
   align-items: center;
@@ -82,32 +73,10 @@ const CoinDisplayContainer = styled(Flex)`
   align-items: center;
 `;
 
-const NavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: ${({ theme }) => theme.radius.md};
-  color: ${({ theme }) => theme.colors.iconSubtle};
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.15s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.buttonHover};
-    color: ${({ theme }) => theme.colors.text};
-  }
-`;
-
-const LogoLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-`;
-
 const RoundBtn = styled(Flex)`
   height: 32px;
   width: 32px;
+  min-width: 32px;
   justify-content: center;
   align-items: center;
   border-radius: ${({ theme }) => theme.radius.full};
@@ -156,11 +125,17 @@ const TopNav = () => {
         </LeftSide>
 
         <RightSide>
+          <RoundBtn style={{ marginRight: 8 }} title="Running on Base">
+            <Image alt="Base chain" src="/base.png" width={20} height={20} />
+          </RoundBtn>
           <ConnectWalletButton />
         </RightSide>
 
         <RightSideMobile>
           <MobileBox>
+            <RoundBtn title="Running on Base" style={{ marginRight: 4 }}>
+              <Image alt="Base chain" src="/base.png" width={20} height={20} />
+            </RoundBtn>
             <RoundBtn>
               <ConnectWalletIcon />
             </RoundBtn>
