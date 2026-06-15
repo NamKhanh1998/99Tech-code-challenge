@@ -1,6 +1,5 @@
 import { devices, theme } from "@/config";
 import { useFetchTopCoins } from "@/hooks/useFetchTopCoins";
-import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -162,9 +161,6 @@ const TopNav = () => {
 
         <RightSideMobile>
           <MobileBox>
-            <RoundBtn>
-              <SearchIcon color={theme.colors.icon} height="18px" width="18px" />
-            </RoundBtn>
             <RoundBtn>
               <ConnectWalletIcon />
             </RoundBtn>

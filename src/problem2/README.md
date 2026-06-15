@@ -1,5 +1,9 @@
 # Problem 2: Currency Swap UI
 
+**Live Preview:** [swap-form-code-challenge.vercel.app](https://swap-form-code-challenge.vercel.app/)
+
+> **Note:** MetaMask has a known bug recently — use **OKX Wallet** for the best experience.
+
 Built with Next.js 14, React, TypeScript, and styled-components on the Base network. Extends the basic quote form into a production-style swap — real wallet connection, live on-chain quotes, ERC-20 approval flow, and actual transaction execution.
 
 ## Tech Stack

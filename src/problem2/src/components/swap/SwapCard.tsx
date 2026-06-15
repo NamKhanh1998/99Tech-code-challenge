@@ -131,6 +131,7 @@ const SwapCard = () => {
       const outputKey = getBalanceKey(outputCurrency, DEFAULT_CHAIN_ID);
 
       const inputBalance = inputKey ? balancesMap?.[inputKey]?.toSignificant() || "0" : "0";
+
       const inputExactBalance = inputKey ? (balancesMap?.[inputKey]?.toExact() ?? "") : "";
       const outputBalance = outputKey ? balancesMap?.[outputKey]?.toSignificant() || "0" : "0";
 

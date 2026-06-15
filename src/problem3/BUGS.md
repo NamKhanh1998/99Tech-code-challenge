@@ -204,18 +204,18 @@ Either `children` should be rendered, or it should not be destructured (and `Pro
 
 ## Summary Table
 
-| # | Severity | Category | Issue |
-|---|----------|----------|-------|
-| 1 | Critical | Bug | `lhsPriority` undefined — ReferenceError at runtime |
-| 2 | High | Bug | Filter logic inverted — keeps zero/negative balances |
-| 3 | High | Type Bug | `blockchain` missing from `WalletBalance` interface |
-| 4 | High | Bug | `rows` accesses `balance.formatted` which is `undefined` |
-| 5 | Medium | Bug | Sort comparator returns `undefined` for equal priorities |
-| 6 | Medium | Performance | `getPriority` called O(n log n) times instead of O(n) |
-| 7 | Medium | Performance | `prices` in `useMemo` deps causes unnecessary recomputes |
-| 8 | Low | Performance | `formattedBalances` computed every render but never used |
-| 9 | Low | Performance | `rows` not memoized |
-| 10 | Low | Anti-pattern | `getPriority` param typed `any` |
-| 11 | Low | Anti-pattern | `getPriority` recreated inside component on every render |
-| 12 | Low | Anti-pattern | Array index used as React `key` after sort |
-| 13 | Low | Unclear intent | `children` destructured but never rendered |
+| # | Category | Issue |
+|---|----------|-------|
+| 1 | Bug | `lhsPriority` undefined — ReferenceError at runtime |
+| 2 | Bug | Filter logic inverted — keeps zero/negative balances |
+| 3 | Type Bug | `blockchain` missing from `WalletBalance` interface |
+| 4 | Bug | `rows` accesses `balance.formatted` which is `undefined` |
+| 5 | Bug | Sort comparator returns `undefined` for equal priorities |
+| 6 | Performance | `getPriority` called O(n log n) times instead of O(n) |
+| 7 | Performance | `prices` in `useMemo` deps causes unnecessary recomputes |
+| 8 | Performance | `formattedBalances` computed every render but never used |
+| 9 | Performance | `rows` not memoized |
+| 10 | Anti-pattern | `getPriority` param typed `any` |
+| 11 | Anti-pattern | `getPriority` recreated inside component on every render |
+| 12 | Anti-pattern | Array index used as React `key` after sort |
+| 13 | Unclear intent | `children` destructured but never rendered |

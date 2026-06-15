@@ -1,6 +1,5 @@
 import Flex from "@/components/ui/Flex";
 import Text from "@/components/ui/Text";
-import SearchIcon from "@/components/icons/SearchIcon";
 import ModalV2 from "@/components/modal";
 import { StyledModalBox } from "@/components/modal/styles";
 import useDebounce from "@/hooks/useDebounce";
@@ -278,7 +277,10 @@ export const CurrencyModal: FC<{
                 $isSelected={n.value === selectedNarrative}
                 onClick={() => setSelectedNarrative(n.value)}
               >
-                <Text fontSize="14px" color={n.value === selectedNarrative ? theme.colors.pureWhite : theme.colors.lightBorder}>
+                <Text
+                  fontSize="14px"
+                  color={n.value === selectedNarrative ? theme.colors.pureWhite : theme.colors.lightBorder}
+                >
                   {n.name}
                 </Text>
               </FilterItem>

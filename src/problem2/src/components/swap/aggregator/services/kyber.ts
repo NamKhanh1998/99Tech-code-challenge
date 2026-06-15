@@ -5,7 +5,7 @@ import { QuoteRequest, TransformedQuote } from "../types";
 
 const BASE_URL = "https://aggregator-api.kyberswap.com/base/api/v1";
 const BFF_BASE_URL = "https://bff.kyberswap.com/api/v1";
-const FEE_RECEIVER = "";
+const FEE_RECEIVER = "0x2d9b4DF9C886dbE42D10D39b25742F0d3f36522a";
 const FEE_AMOUNT = 5;
 
 const client = axios.create();

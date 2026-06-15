@@ -22,6 +22,7 @@
     "big.js": "^7.0.1",
     "bignumber.js": "^9.1.2",
     "connectkit": "^1.9.1",
+    "decimal.js-light": "^2.5.1",
     "framer-motion": "^12.4.7",
     "jotai": "^2.12.1",
     "lodash": "^4.17.21",
