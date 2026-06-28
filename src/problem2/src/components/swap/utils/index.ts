@@ -1,11 +1,15 @@
 import { Currency } from "../../../../packages/swap-sdk-core/currency";
 
+// We use this function when creating a regular expression from user input.
+// Since characters like ., *, +, ?, (, ), and $ have special meanings in regex, we need to escape them first.
+// This ensures the input is treated as a literal string rather than a regex pattern, preventing incorrect matches and unexpected behavior.
 export function escapeRegNumberExp(string: string): string {
   return string.replace(/[,.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 export const inputRegex = RegExp(`^\\d*(\\\\[.,]\\d*)*$`);
 
+// Converts user-typed number strings (including EU comma decimals and thousand-separator commas) into a canonical dot-decimal string (e.g. "1,500.25" → "1500.25", "1,5" → "1.5").
 export const normalizeInput = (inputValue: string) => {
   const lastIndexIsDecimal =
     inputValue?.length > 0
@@ -22,6 +26,7 @@ export const normalizeInput = (inputValue: string) => {
   return inputValue?.replace(/[,.]/g, "");
 };
 
+// Formats a raw number for display by adding thousand-separator commas (e.g. 1500.25 → "1,500.25"). Preserves the decimal part as-is.
 export const displayValueFormatted = (value: string | number) => {
   const decimalParts = value?.toString()?.split(".");
 
@@ -31,6 +36,7 @@ export const displayValueFormatted = (value: string | number) => {
   return `${formatedInterger}.${decimalParts[1]}`;
 };
 
+// Filters a token list by a free-text query, matching against symbol, name, or contract address (case-insensitive, multi-word, substring match).
 export function filterTokens(tokens: Currency[], search: string): Currency[] {
   if (!search) return tokens;
 

@@ -39,7 +39,6 @@ const PanelContent = styled(Flex)`
 `;
 
 const StyledInput = styled.input<{
-  error?: boolean;
   fontSize?: string;
   align?: string;
 }>`
@@ -49,22 +48,13 @@ const StyledInput = styled.input<{
   flex: 1 1 auto;
   background-color: transparent;
   text-align: ${({ align }) => align ?? "right"};
-  white-space: nowrap;
-  padding: 0px;
+  padding: 0;
   line-height: 1;
   color: ${({ theme }) => theme.colors.white};
   width: 100%;
   height: 32px;
   text-overflow: ellipsis;
   font-size: 22px;
-
-  ::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
 
   ::placeholder {
     color: ${({ theme }) => theme.colors.placeHolder};

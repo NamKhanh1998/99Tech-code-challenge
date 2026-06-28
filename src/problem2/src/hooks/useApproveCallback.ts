@@ -21,11 +21,7 @@ export enum ApprovalState {
  * Simplified hook to manage token approval
  * Handles checking approval state and executing approve/revoke transactions
  */
-export function useApproveCallback(
-  amountToApprove?: CurrencyAmount<Currency>,
-  spender?: string,
-  addToTransaction = true,
-) {
+export function useApproveCallback(amountToApprove?: CurrencyAmount<Currency>, spender?: string) {
   const { address: account } = useAccount();
   const { chainId } = useActiveChainId();
   const publicClient = usePublicClient();
@@ -39,7 +35,11 @@ export function useApproveCallback(
     [amountToApprove?.currency],
   );
 
-  const { allowance: currentAllowance, isLoading: isAllowanceLoading } = useTokenAllowance(token, account ?? undefined, spender);
+  const { allowance: currentAllowance, isLoading: isAllowanceLoading } = useTokenAllowance(
+    token,
+    account ?? undefined,
+    spender,
+  );
 
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);

@@ -1,5 +1,3 @@
-"use client";
-
 import { AnimatePresence, LazyMotion, motion } from "framer-motion";
 import React, { FC, PropsWithChildren } from "react";
 import { useKeyPressEvent } from "react-use";
@@ -7,6 +5,7 @@ import styled from "styled-components";
 import Overlay from "./Overlay";
 import { StyledModalWrapper } from "./styles";
 
+// Lazy-load framer-motion's domMax feature bundle so it's excluded from the initial JS bundle and only downloaded when a modal first renders.
 const DomMax = () => import("./motionDomMax").then((mod) => mod.default);
 
 type ModalV2Props = PropsWithChildren<{

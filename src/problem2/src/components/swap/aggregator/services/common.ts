@@ -6,14 +6,13 @@ import { BIG_TEN, getBalanceAmount } from "../../utils/bigNumber";
 import { Currency } from "../../../../../packages/swap-sdk-core/currency";
 import { CurrencyAmount } from "../../../../../packages/swap-sdk-core/fractions/currencyAmount";
 import { kyberService } from "./kyber";
-
-export const ETHER_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+import { GELATO_NATIVE } from "@/config/token";
 
 const isValidQuoteInput = (typedValue: string, inputCurrency: any, outputCurrency: any): boolean =>
   Number(typedValue) > 0 && Boolean(inputCurrency) && Boolean(outputCurrency);
 
 export const getTokenAddress = (token: any): string =>
-  token?.address && isAddress(token?.address) ? token.address : ETHER_ADDRESS;
+  token?.address && isAddress(token?.address) ? token.address : GELATO_NATIVE;
 
 const buildQuoteRequest = (
   chainId: ChainId,

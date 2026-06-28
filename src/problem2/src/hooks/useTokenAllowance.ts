@@ -1,5 +1,4 @@
 import { erc20Abi } from "viem";
-
 import { QueryObserverResult, useQuery } from "@tanstack/react-query";
 import { useActiveChainId } from "./useActiveChainId";
 import { Token } from "../../packages/swap-sdk-core/token";
@@ -40,7 +39,11 @@ export function useTokenAllowanceByChainId({
   refetch: () => Promise<QueryObserverResult<bigint>>;
   isLoading: boolean;
 } {
-  const { data: allowance, refetch, isLoading } = useQuery({
+  const {
+    data: allowance,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: [chainId, token?.address, owner, spender],
 
     queryFn: async () => {
@@ -56,7 +59,6 @@ export function useTokenAllowanceByChainId({
     },
 
     staleTime: 5000,
-    gcTime: 10000,
     refetchInterval: 10000,
     retry: 2,
     refetchOnWindowFocus: true,

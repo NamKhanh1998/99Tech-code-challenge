@@ -43,25 +43,33 @@ export const useFetchUserBalances = () => {
         balanceMap[key] = CurrencyAmount.fromRawAmount(nativeToken, raw.toString());
       }
 
-      // 2. GET ERC20 BALANCES - Batch in chunks to avoid RPC timeouts
+      // 2. GET ERC20 BALANCES - Fire all batches in parallel
       if (erc20Tokens.length > 0) {
-        const BATCH_SIZE = 50; // Fetch 50 tokens at a time
+        const BATCH_SIZE = 50;
 
+        const batches: Token[][] = [];
         for (let i = 0; i < erc20Tokens.length; i += BATCH_SIZE) {
-          const batch = erc20Tokens.slice(i, i + BATCH_SIZE);
-          const batchContracts = batch.map((token) => ({
-            abi: erc20Abi,
-            address: token.wrapped.address as Address,
-            functionName: "balanceOf",
-            args: [account as Address],
-          }));
+          batches.push(erc20Tokens.slice(i, i + BATCH_SIZE));
+        }
 
-          const results = await multicall(client, { contracts: batchContracts, allowFailure: true });
+        const batchResults = await Promise.all(
+          batches.map((batch) =>
+            multicall(client, {
+              contracts: batch.map((token) => ({
+                abi: erc20Abi,
+                address: token.wrapped.address as Address,
+                functionName: "balanceOf",
+                args: [account as Address],
+              })),
+              allowFailure: true,
+            }).then((results) => ({ batch, results })),
+          ),
+        );
 
+        for (const { batch, results } of batchResults) {
           results.forEach((res, index) => {
             const token = batch[index];
             if (!token || !res?.result) return;
-
             balanceMap[token.wrapped.address.toLowerCase()] = CurrencyAmount.fromRawAmount(
               token,
               res.result.toString(),
